@@ -1,18 +1,18 @@
 package main
 
 import (
-	"encoding/json"	
+	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 type request struct {
-	Method		string `json:"method"`
-	URL			string `json:"url"`
-	Headers 	map[string][]string `json:"headers"`
-	Body		string `json:"body"`
-	RemoteAddr 	string `json:"remote_address"`
+	Method     string              `json:"method"`
+	URL        string              `json:"url"`
+	Headers    map[string][]string `json:"headers"`
+	Body       string              `json:"body"`
+	RemoteAddr string              `json:"remote_address"`
 }
 
 func datafy(r *http.Request) *request {
@@ -26,10 +26,10 @@ func datafy(r *http.Request) *request {
 		bs = []byte("<error reading body>")
 	}
 	return &request{
-		Method: r.Method,
-		URL: r.URL.String(),
-		Headers: headers,
-		Body: string(bs),
+		Method:     r.Method,
+		URL:        r.URL.String(),
+		Headers:    headers,
+		Body:       string(bs),
 		RemoteAddr: r.RemoteAddr,
 	}
 }
